@@ -1,4 +1,4 @@
 <main class="size-full flex flex-col">
-	Landing
-  <a href="./store">Go to store</a>
+	Store
+  <a href="../">Go to landing</a>
 </main>
