@@ -1,4 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@font-face {
+  font-family: 'The Seasons';
+  font-weight: lighter;
+  font-style: normal;
+  src:
+    local(''),
+    url('fonts/the-seasons/the-seasons-lt.woff') format('woff'),
+    url('fonts/the-seasons/the-seasons-lt.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  font-weight: normal;
+  font-style: normal;
+  src:
+    local(''),
+    url('fonts/the-seasons/the-seasons-reg.woff') format('woff'),
+    url('fonts/the-seasons/the-seasons-reg.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  font-weight: bold;
+  font-style: normal;
+  src:
+    local(''),
+    url('fonts/the-seasons/the-seasons-bd.woff') format('woff'),
+    url('fonts/the-seasons/the-seasons-bd.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  font-weight: lighter;
+  font-style: italic;
+  src:
+    local(''),
+    url('fonts/the-seasons/the-seasons-ltit.woff') format('woff'),
+    url('fonts/the-seasons/the-seasons-ltit.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  font-weight: normal;
+  font-style: italic;
+  src:
+    local(''),
+    url('fonts/the-seasons/the-seasons-it.woff') format('woff'),
+    url('fonts/the-seasons/the-seasons-it.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  font-weight: bold;
+  font-style: italic;
+  src:
+    local(''),
+    url('fonts/the-seasons/the-seasons-bdit.woff') format('woff'),
+    url('fonts/the-seasons/the-seasons-bdit.woff2') format('woff2');
+}
