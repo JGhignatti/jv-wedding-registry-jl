@@ -4,6 +4,22 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@layer base {
+  .overflow-y-auto {
+    &::-webkit-scrollbar {
+      @apply w-1 xs:w-2;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-tertiary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-white rounded-full;
+    }
+  }
+}
+
 @font-face {
   font-family: 'The Seasons';
   font-weight: lighter;
