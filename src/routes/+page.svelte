@@ -148,7 +148,7 @@
             />
           </svg>
 
-          <span>Ir para a loja</span>
+          <span class="font-bold">Ir para a loja</span>
         </a>
       </div>
 
@@ -215,7 +215,7 @@
               />
             </svg>
 
-            Rotas
+            <span class="font-bold">Rotas</span>
           </a>
         </div>
 
