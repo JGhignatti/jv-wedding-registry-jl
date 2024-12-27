@@ -26,8 +26,7 @@
   font-style: normal;
   src:
     local(''),
-    url('fonts/the-seasons/the-seasons-lt.woff') format('woff'),
-    url('fonts/the-seasons/the-seasons-lt.woff2') format('woff2');
+    url('fonts/the-seasons/the-seasons-lt.ttf') format('truetype');
 }
 
 @font-face {
@@ -36,8 +35,7 @@
   font-style: normal;
   src:
     local(''),
-    url('fonts/the-seasons/the-seasons-reg.woff') format('woff'),
-    url('fonts/the-seasons/the-seasons-reg.woff2') format('woff2');
+    url('fonts/the-seasons/the-seasons-reg.ttf') format('truetype');
 }
 
 @font-face {
@@ -46,8 +44,7 @@
   font-style: normal;
   src:
     local(''),
-    url('fonts/the-seasons/the-seasons-bd.woff') format('woff'),
-    url('fonts/the-seasons/the-seasons-bd.woff2') format('woff2');
+    url('fonts/the-seasons/the-seasons-bd.ttf') format('truetype');
 }
 
 @font-face {
@@ -56,8 +53,7 @@
   font-style: italic;
   src:
     local(''),
-    url('fonts/the-seasons/the-seasons-ltit.woff') format('woff'),
-    url('fonts/the-seasons/the-seasons-ltit.woff2') format('woff2');
+    url('fonts/the-seasons/the-seasons-ltit.ttf') format('truetype');
 }
 
 @font-face {
@@ -66,8 +62,7 @@
   font-style: italic;
   src:
     local(''),
-    url('fonts/the-seasons/the-seasons-it.woff') format('woff'),
-    url('fonts/the-seasons/the-seasons-it.woff2') format('woff2');
+    url('fonts/the-seasons/the-seasons-it.ttf') format('truetype');
 }
 
 @font-face {
@@ -76,6 +71,5 @@
   font-style: italic;
   src:
     local(''),
-    url('fonts/the-seasons/the-seasons-bdit.woff') format('woff'),
-    url('fonts/the-seasons/the-seasons-bdit.woff2') format('woff2');
+    url('fonts/the-seasons/the-seasons-bdit.ttf') format('truetype');
 }

@@ -1,6 +1,7 @@
 import containerQueries from '@tailwindcss/container-queries';
 import forms from '@tailwindcss/forms';
 import type { Config } from 'tailwindcss';
+import flowbite from 'flowbite/plugin';
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -57,5 +58,5 @@ export default {
     },
   },
 
-  plugins: [forms, containerQueries],
+  plugins: [forms, containerQueries, flowbite],
 } satisfies Config;
