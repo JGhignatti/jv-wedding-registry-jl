@@ -11,7 +11,7 @@
     font-style: normal;
     src:
       local(''),
-      url('fonts/the-seasons/the-seasons-lt.ttf') format('truetype');
+      url('$lib/fonts/the-seasons/the-seasons-lt.ttf') format('truetype');
   }
 
   @font-face {
@@ -20,7 +20,7 @@
     font-style: normal;
     src:
       local(''),
-      url('fonts/the-seasons/the-seasons-reg.ttf') format('truetype');
+      url('$lib/fonts/the-seasons/the-seasons-reg.ttf') format('truetype');
   }
 
   @font-face {
@@ -29,7 +29,7 @@
     font-style: normal;
     src:
       local(''),
-      url('fonts/the-seasons/the-seasons-bd.ttf') format('truetype');
+      url('$lib/fonts/the-seasons/the-seasons-bd.ttf') format('truetype');
   }
 
   @font-face {
@@ -38,7 +38,7 @@
     font-style: italic;
     src:
       local(''),
-      url('fonts/the-seasons/the-seasons-ltit.ttf') format('truetype');
+      url('$lib/fonts/the-seasons/the-seasons-ltit.ttf') format('truetype');
   }
 
   @font-face {
@@ -47,7 +47,7 @@
     font-style: italic;
     src:
       local(''),
-      url('fonts/the-seasons/the-seasons-it.ttf') format('truetype');
+      url('$lib/fonts/the-seasons/the-seasons-it.ttf') format('truetype');
   }
 
   @font-face {
@@ -56,7 +56,7 @@
     font-style: italic;
     src:
       local(''),
-      url('fonts/the-seasons/the-seasons-bdit.ttf') format('truetype');
+      url('$lib/fonts/the-seasons/the-seasons-bdit.ttf') format('truetype');
   }
 
   .overflow-y-auto {
