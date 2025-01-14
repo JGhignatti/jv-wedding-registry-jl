@@ -1,34 +1,50 @@
-import image0 from '../../images/items/0.png';
-import image1 from '../../images/items/1.png';
-import image2 from '../../images/items/2.png';
-import image3 from '../../images/items/3.png';
-import image4 from '../../images/items/4.png';
-import image5 from '../../images/items/5.png';
-import image6 from '../../images/items/6.png';
-import image7 from '../../images/items/7.png';
-import image8 from '../../images/items/8.png';
-import image9 from '../../images/items/9.png';
-import image10 from '../../images/items/10.png';
-import image11 from '../../images/items/11.png';
-import image12 from '../../images/items/12.png';
-import image13 from '../../images/items/13.png';
-import image14 from '../../images/items/14.png';
-import image15 from '../../images/items/15.png';
-import image16 from '../../images/items/16.png';
-import image17 from '../../images/items/17.png';
-import image18 from '../../images/items/18.png';
-import image19 from '../../images/items/19.png';
-import image20 from '../../images/items/20.png';
-import image21 from '../../images/items/21.png';
-import image22 from '../../images/items/22.png';
-import image23 from '../../images/items/23.png';
-import image24 from '../../images/items/24.png';
-import image25 from '../../images/items/25.png';
-import image26 from '../../images/items/26.png';
-import image27 from '../../images/items/27.png';
-import image28 from '../../images/items/28.png';
-import image29 from '../../images/items/29.png';
-import image30 from '../../images/items/30.png';
+import image0 from '../images/items/0.png';
+import image1 from '../images/items/1.png';
+import image2 from '../images/items/2.png';
+import image3 from '../images/items/3.png';
+import image4 from '../images/items/4.png';
+import image5 from '../images/items/5.png';
+import image6 from '../images/items/6.png';
+import image7 from '../images/items/7.png';
+import image8 from '../images/items/8.png';
+import image9 from '../images/items/9.png';
+import image10 from '../images/items/10.png';
+import image11 from '../images/items/11.png';
+import image12 from '../images/items/12.png';
+import image13 from '../images/items/13.png';
+import image14 from '../images/items/14.png';
+import image15 from '../images/items/15.png';
+import image16 from '../images/items/16.png';
+import image17 from '../images/items/17.png';
+import image18 from '../images/items/18.png';
+import image19 from '../images/items/19.png';
+import image20 from '../images/items/20.png';
+import image21 from '../images/items/21.png';
+import image22 from '../images/items/22.png';
+import image23 from '../images/items/23.png';
+import image24 from '../images/items/24.png';
+import image25 from '../images/items/25.png';
+import image26 from '../images/items/26.png';
+import image27 from '../images/items/27.png';
+import image28 from '../images/items/28.png';
+import image29 from '../images/items/29.png';
+import image30 from '../images/items/30.png';
+
+export function shuffle(items: Item[]): Item[] {
+  const arr = items.map(a => ({...a}));
+
+  let pointer = arr.length;
+
+  while (pointer !== 0) {
+    const randomIndex = Math.floor(Math.random() * pointer);
+
+    pointer -= 1;
+
+    [arr[pointer], arr[randomIndex]] = [arr[randomIndex], arr[pointer]];
+  }
+
+  return arr;
+}
 
 export type Item = {
   id: number;

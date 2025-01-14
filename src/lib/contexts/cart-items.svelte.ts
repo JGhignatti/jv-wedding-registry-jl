@@ -1,5 +1,5 @@
 import { getContext, setContext } from 'svelte';
-import type { Item } from '$lib/server/local-db/db';
+import type { Item } from '$lib/local-db/db';
 
 class CartItems {
   list = $state<Item[]>([]);

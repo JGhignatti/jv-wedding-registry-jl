@@ -52,8 +52,8 @@
   class="z-10 hidden w-44 rounded-lg bg-white shadow"
 >
   <ul
-    class="py-2 text-sm text-gray-700 dark:text-gray-200"
-    aria-labelledby="dropdownDefaultButton"
+    class="py-2 text-sm text-gray-700"
+    aria-labelledby="add-to-calendar--button"
   >
     <li>
       <a

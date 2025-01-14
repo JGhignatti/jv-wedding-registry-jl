@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Confetti } from 'svelte-confetti';
-  import type { Item } from '$lib/server/local-db/db';
+  import type { Item } from '$lib/local-db/db';
   import { getToasts } from '$lib/contexts/toasts.svelte';
   import { getCartItems } from '$lib/contexts/cart-items.svelte';
 

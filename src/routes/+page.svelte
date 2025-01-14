@@ -3,7 +3,6 @@
   import paperTexture from '$lib/images/paper.webp';
   import flowersBrownImage from '$lib/images/flowers-brown.png';
   import flowersGreenImage from '$lib/images/flowers-green.png';
-  import SmallLoader from '$lib/components/small-loader.svelte';
   import RsvpWppButton from '$lib/components/rsvp-wpp-button.svelte';
   import AddToCalendarButton from '$lib/components/add-to-calendar-button.svelte';
   import { onMount } from 'svelte';
@@ -96,15 +95,11 @@
         </p>
       </div>
 
-      {#await data.previewItems}
-        <SmallLoader />
-      {:then previewItems}
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {#each previewItems as item}
-            <StoreItem {item} />
-          {/each}
-        </div>
-      {/await}
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {#each data.previewItems as item}
+          <StoreItem {item} />
+        {/each}
+      </div>
 
       <div class="flex flex-col items-center gap-2">
         <p class="max-w-2xl text-center text-lg">
