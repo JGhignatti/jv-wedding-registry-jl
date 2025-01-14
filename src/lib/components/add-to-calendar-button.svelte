@@ -1,33 +1,16 @@
 <script lang="ts">
-  import { Dropdown } from 'flowbite';
-  import type { DropdownOptions, DropdownInterface } from 'flowbite';
+  import { initDropdowns } from 'flowbite';
   import { onMount } from 'svelte';
 
-  let dropdown: DropdownInterface;
-
   onMount(() => {
-    const $triggerEl = document.getElementById('add-to-calendar--button');
-    const $targetEl = document.getElementById('add-to-calendar--dropdown');
-
-    const options: DropdownOptions = {
-      placement: 'bottom',
-      triggerType: 'click',
-      delay: 300,
-    };
-
-    dropdown = new Dropdown($targetEl, $triggerEl, options);
+    initDropdowns();
   });
-
-  function toggle(): void {
-    dropdown.toggle();
-  }
 </script>
 
 <button
   id="add-to-calendar--button"
   data-dropdown-toggle="add-to-calendar--dropdown"
-  class="relative flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 font-serif text-xl transition-colors hover:bg-white hover:text-sky-600"
-  on:click={toggle}
+  class="relative flex items-center gap-2 rounded-full border border-sky-600 bg-white px-4 py-2 font-serif text-xl transition-colors hover:text-sky-600"
 >
   <svg
     class="size-6"

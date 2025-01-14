@@ -50,6 +50,7 @@ export default {
       colors: {
         primary: '#85895d',
         secondary: '#c28456',
+        'secondary-alt': '#f1d89f',
         tertiary: '#e6ece2',
       },
       screens: {

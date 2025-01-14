@@ -1,4 +1,4 @@
-import type { Item } from '$lib/server/db/schema';
+import { items, type Item } from '$lib/server/local-db/db';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
@@ -8,12 +8,21 @@ export const load: PageServerLoad = async () => {
 };
 
 async function loadPreviewItems(): Promise<Item[]> {
-	const res = await fetch('https://picsum.photos/v2/list?limit=3');
-  const items = (await res.json()) as { id: number, download_url: string, author: string }[];
+  return shuffle(items).slice(0, 2);
+}
 
-  return items.map(item => ({
-    id: item.id,
-    imageUrl: item.download_url,
-    name: item.author,
-  }));
+function shuffle(items: Item[]): Item[] {
+  const arr = items.map(a => ({...a}));
+
+  let pointer = arr.length;
+
+  while (pointer !== 0) {
+    const randomIndex = Math.floor(Math.random() * pointer);
+
+    pointer -= 1;
+
+    [arr[pointer], arr[randomIndex]] = [arr[randomIndex], arr[pointer]];
+  }
+
+  return arr;
 }

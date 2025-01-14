@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import NavLinkItem from '$lib/components/nav-link-item.svelte';
   import paperTexture from '$lib/images/paper.webp';
 
-  let { children } = $props();
+  const { children } = $props();
 </script>
 
-<nav class="container mx-auto max-w-screen-xl px-4 pt-4 mb-6 xs:mb-8">
+<nav class="container mx-auto mb-6 max-w-screen-xl px-4 pt-4 xs:mb-8">
   <div
     style="--bg-image: url({paperTexture})"
     class="relative overflow-clip rounded-md bg-white shadow-xl shadow-neutral-600/10 before:absolute before:inset-0 before:block before:rounded-md before:bg-[image:var(--bg-image)] before:bg-contain before:opacity-25"
   >
-    <div class="relative flex flex-col gap-2 p-4 md:flex-row md:gap-4 md:p-6">
+    <div class="relative flex flex-col gap-2 p-4 sm:flex-row sm:gap-4 sm:p-6">
       <div
         class="flex justify-center gap-[5px] font-serif text-4xl leading-10 text-secondary"
       >
@@ -19,39 +19,18 @@
         <span>JH</span>
       </div>
 
-      <ul class="grid w-full grid-cols-2 gap-4 xs:grid-cols-4 items-end">
+      <ul class="grid w-full grid-cols-2 items-end gap-4 sm:grid-cols-4">
         <li>
-          <a
-            href="/"
-            class="flex items-center justify-center border-b-2 border-secondary/30 text-secondary transition-colors hover:border-sky-600/30 hover:text-sky-600 hover:bg-amber-700/5"
-          >
-            Início
-          </a>
+          <NavLinkItem link="/" text="Início" />
         </li>
         <li>
-          <a
-            href="/#info"
-            class="flex items-center justify-center border-b-2 border-secondary/30 text-secondary transition-colors hover:border-sky-600/30 hover:text-sky-600 hover:bg-amber-700/5"
-          >
-            Informações
-          </a>
+          <NavLinkItem link="/#info" text="Informações" />
         </li>
         <li>
-          <a
-            href="/store"
-            class="flex items-center justify-center border-b-2 border-secondary/30 text-secondary transition-colors hover:border-sky-600/30 hover:text-sky-600 hover:bg-amber-700/5"
-            class:active={$page.url.pathname === '/store'}
-          >
-            Loja
-          </a>
+          <NavLinkItem link="/store" text="Loja" />
         </li>
         <li>
-          <a
-            href="/cart"
-            class="flex items-center justify-center border-b-2 border-secondary/30 text-secondary transition-colors hover:border-sky-600/30 hover:text-sky-600 hover:bg-amber-700/5"
-          >
-            Carrinho
-          </a>
+          <NavLinkItem link="/cart" text="Carrinho" />
         </li>
       </ul>
     </div>
@@ -61,9 +40,3 @@
 <main class="container mx-auto max-w-screen-xl px-4">
   {@render children()}
 </main>
-
-<style>
-  a.active {
-    @apply !text-primary !border-primary/30 !bg-amber-700/5;
-  }
-</style>

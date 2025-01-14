@@ -1,7 +1,7 @@
 <a
   href="https://wa.me/5551996787876?text=Ol%C3%A1,%20Adriana,%20gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20no%20casamento%20da%20Luiza%20e%20do%20Jo%C3%A3o%20Henrique,%20dia%2012%20de%20Abril%20de%202025,%20no%20Jardim%20Babylonia.%0AMeu%20nome%20completo%20%C3%A9%20___%20e%20meu(s)%20acompanhante(s)%20s%C3%A3o%20___."
   target="_blank"
-  class="relative flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 font-serif text-xl transition-colors hover:bg-white hover:text-sky-600"
+  class="relative flex items-center gap-2 rounded-full border border-sky-600 bg-white px-4 py-2 font-serif text-xl transition-colors hover:text-sky-600"
 >
   <svg
     class="size-6"

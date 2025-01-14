@@ -59,6 +59,16 @@
       url('$lib/fonts/the-seasons/the-seasons-bdit.ttf') format('truetype');
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
   .overflow-y-auto {
     &::-webkit-scrollbar {
       @apply w-1 xs:w-2;

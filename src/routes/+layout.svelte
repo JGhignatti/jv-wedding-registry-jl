@@ -1,15 +1,35 @@
 <script lang="ts">
-  import { footerSnippet } from '$lib/contexts/footer-snippet.svelte';
   import '../app.css';
+  import Toasts from '$lib/components/toasts.svelte';
+  import { setCartItems } from '$lib/contexts/cart-items.svelte';
+  import { setToasts } from '$lib/contexts/toasts.svelte';
+  import {
+    getFooterSnippet,
+    setFooterSnippet,
+  } from '$lib/contexts/footer-snippet.svelte';
+  import { onMount } from 'svelte';
+  import { initFlowbite } from 'flowbite';
 
-  let { children } = $props();
+  const { children } = $props();
+
+  setCartItems();
+  setToasts();
+  setFooterSnippet();
+
+  const footerSnippet = getFooterSnippet();
+
+  onMount(() => {
+    initFlowbite();
+  });
 </script>
 
-<div class="flex size-full flex-col overflow-y-auto">
+<Toasts />
+
+<div id="root--scrollable" class="flex size-full flex-col overflow-y-auto">
   {@render children()}
 
-  <footer class="shrink-0 pt-6 grow flex flex-col">
-    <div class="shrink-0 relative">
+  <footer class="flex shrink-0 grow flex-col pt-6">
+    <div class="relative shrink-0">
       <div class="absolute inset-0 rotate-180 opacity-30">
         <svg
           xmlns="http://www.w3.org/2000/svg"
