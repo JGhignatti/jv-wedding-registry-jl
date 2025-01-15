@@ -7,7 +7,7 @@
 <a
   href={link}
   class="flex items-center justify-center border-b-2 border-secondary/30 text-secondary transition-colors hover:border-secondary hover:bg-amber-700/5 text-lg"
-  class:active={$page.url.pathname === link}
+  class:active={$page.url.pathname.split('/')[1] === link.split('/')[1]}
 >
   {text}
 </a>

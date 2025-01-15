@@ -1,8 +1,10 @@
 <script lang="ts">
   import NavLinkItem from '$lib/components/nav-link-item.svelte';
+  import { getCartItems } from '$lib/contexts/cart-items.svelte';
   import paperTexture from '$lib/images/paper.webp';
 
   const { children } = $props();
+  const cartItems = getCartItems();
 </script>
 
 <nav class="container mx-auto mb-6 max-w-screen-xl px-4 pt-4 xs:mb-8">
@@ -29,8 +31,16 @@
         <li>
           <NavLinkItem link="/store" text="Loja" />
         </li>
-        <li>
+        <li class="relative">
           <NavLinkItem link="/cart" text="Carrinho" />
+
+          {#if cartItems.list.length !== 0}
+            <div
+              class="absolute flex size-6 items-center justify-center rounded-full bg-red-600 text-white -top-1 -right-1"
+            >
+              {cartItems.list.length}
+            </div>
+          {/if}
         </li>
       </ul>
     </div>

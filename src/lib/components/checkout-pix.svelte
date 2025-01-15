@@ -1,0 +1,207 @@
+<script lang="ts">
+  import { getCartItems } from '$lib/contexts/cart-items.svelte';
+  import { getToasts } from '$lib/contexts/toasts.svelte';
+  import { createStaticPix, hasError } from 'pix-utils';
+  import { onMount } from 'svelte';
+
+  const { userInfo }: { userInfo: { name: string; email: string } } = $props();
+
+  const toasts = getToasts();
+  const cartItems = getCartItems();
+
+  const totalPrice = `R$ ${cartItems.list
+    .reduce((acc, cur) => acc + cur.price, 0)
+    .toFixed(2)
+    .replace('.', ',')}`;
+  const totalAmount = cartItems.list.reduce((acc, cur) => acc + cur.price, 0);
+  let errorCreatingPix = $state(false);
+  let hasCopiedCode = $state(false);
+  let code = $state('');
+  let qrCode = $state<Promise<string> | null>(null);
+
+  onMount(() => {
+    const pix = createStaticPix({
+      merchantName: 'Luiza Vieira',
+      merchantCity: 'Porto Alegre',
+      pixKey: 'luizabarasuol@gmail.com',
+      transactionAmount: totalAmount,
+    });
+
+    if (!hasError(pix)) {
+      code = pix.toBRCode();
+      qrCode = pix.toImage();
+
+      setTimeout(() => {
+        cartItems.list = [];
+      }, 500);
+    } else {
+      errorCreatingPix = true;
+    }
+  });
+
+  function copyCode(): void {
+    if (!code) {
+      return;
+    }
+
+    const success = () => {
+      hasCopiedCode = true;
+
+      toasts.success('Código copiado com sucesso!');
+
+      setTimeout(() => {
+        hasCopiedCode = false;
+      }, 2000);
+    };
+    const error = () => {
+      toasts.error(
+        'Ocorreu um problema ao copiar automaticamente o código. Tente copiar manualmente ou usar o QR Code.',
+      );
+    };
+
+    if (!navigator.clipboard) {
+      const el = document.createElement('textarea') as HTMLTextAreaElement;
+      el.value = code;
+
+      el.style.top = '0';
+      el.style.left = '0';
+      el.style.position = 'fixed';
+
+      document.body.appendChild(el);
+      el.focus();
+      el.select();
+      el.setSelectionRange(0, 99999);
+
+      try {
+        if (document.execCommand('copy')) {
+          success();
+        } else {
+          error();
+        }
+      } catch {
+        error();
+      }
+
+      document.body.removeChild(el);
+    } else {
+      navigator.clipboard.writeText(code).then(success, error);
+    }
+  }
+</script>
+
+{#if errorCreatingPix}
+  Ocorreu um erro ao gerar o Pix para pagamento.<br />
+  Por favor, tente novamente ou entre em contato com Luiza Vieira pelo número +55
+  51 9 9809-8134.
+{:else}
+  <p class="frame mx-auto max-w-screen-sm font-serif-alt italic drop-shadow-sm">
+    Obrigado, <strong>{userInfo.name}</strong>!<br /><br />A sua contribuição
+    para o nosso começo de vida juntos fará toda a diferença e será lembrada com
+    muito amor e gratidão. Estamos contando os dias para celebrar com você e
+    todos os nossos amigos e familiares.<br /><br />Com carinho,
+    <strong>Luiza</strong>
+    e <strong>João Henrique</strong>.
+  </p>
+
+  <div class="flex flex-col gap-2">
+    <h3 class="text-lg">Código copia e cola</h3>
+
+    <div class="flex items-center gap-2">
+      <input
+        readonly
+        class="grow rounded-lg border border-zinc-300 bg-zinc-100 text-zinc-400 focus:border-zinc-300 focus:outline-none focus:ring-transparent focus-visible:outline-none"
+        bind:value={code}
+      />
+
+      <button
+        aria-label="Copiar código"
+        class="flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 border-sky-600 p-2 text-sky-600"
+        onclick={() => copyCode()}
+      >
+        {#if hasCopiedCode}
+          <svg
+            class="size-6"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M11 7V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm4.707 5.707a1 1 0 0 0-1.414-1.414L11 14.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+
+          <span class="hidden font-semibold md:inline">Código copiado</span>
+        {:else}
+          <svg
+            class="size-6"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z"
+              clip-rule="evenodd"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+
+          <span class="hidden font-semibold md:inline">Copiar código</span>
+        {/if}
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h3 class="text-lg">QR Code</h3>
+
+    {#if qrCode !== null}
+      {#await qrCode then src}
+        <img {src} alt="QR Code" class="mx-auto w-full max-w-lg" />
+      {/await}
+    {/if}
+  </div>
+
+  <p class="italic">
+    Use o seu celular junto do app do seu banco para enviar o presente via Pix.
+  </p>
+
+  <div>
+    Antes de confirmar a transferência, certifique-se de que:
+
+    <ol class="list-decimal">
+      <li class="ml-8">A recipiente é Luiza Vieira da Cunha Barasuol</li>
+      <li class="ml-8">O valor é de {totalPrice}</li>
+    </ol>
+  </div>
+
+  <p class="italic">
+    Para fazer a transfência manualmente, use a chave pix "<span
+      class="font-semibold">luizabarasuol@gmail.com</span
+    >" e o valor de <span class="font-semibold">{totalPrice}</span>.
+  </p>
+{/if}
+
+<style>
+  .frame {
+    --corner: 2em;
+    border: var(--corner) solid;
+    border-image-source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" fill="rgb(230 236 226 / 0.4)"><path d="M4 0h1l1 1h2v2l1 1v1L8 6v2H6L5 9H4L3 8H1V6L0 5V4l1-1V1h2l1-1Z" /></svg>');
+    border-image-slice: 4 fill;
+  }
+</style>

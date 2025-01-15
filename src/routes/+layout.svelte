@@ -57,7 +57,7 @@
       >
         {@render footerSnippet.snippet?.()}
 
-        <div class="italic">Em caso de dúvidas ou problemas com a plataforma, favor entrar em contato com a Luiza Vieira pelo número +55 51 9 9809-8134</div>
+        <div class="italic">Em caso de dúvidas ou problemas com a plataforma, favor entrar em contato com Luiza Vieira pelo número +55 51 9 9809-8134</div>
       </div>
     </div>
 

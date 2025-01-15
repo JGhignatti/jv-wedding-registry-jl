@@ -5,7 +5,9 @@ class CartItems {
   list = $state<Item[]>([]);
 
   add(item: Item): void {
-    this.remove(item.id);
+    if (this.has(item.id)) {
+      return;
+    }
 
     this.list.push(item);
   }

@@ -48,7 +48,7 @@
 
           return 0;
         });
-        curSort = 'Alfabético A-Z';
+        curSort = 'Alfabética A-Z';
 
         return;
       case 'za':
@@ -65,7 +65,7 @@
 
           return 0;
         });
-        curSort = 'Alfabético Z-A';
+        curSort = 'Alfabética Z-A';
 
         return;
       case 'cheaper':
@@ -165,7 +165,7 @@
           class="flex w-full justify-start px-4 py-2 hover:bg-gray-100 hover:text-sky-600"
           onclick={() => sort('az')}
         >
-          Alfabético A-Z
+          Alfabética A-Z
         </button>
       </li>
       <li>
@@ -173,7 +173,7 @@
           class="flex w-full justify-start px-4 py-2 hover:bg-gray-100 hover:text-sky-600"
           onclick={() => sort('za')}
         >
-          Alfabético Z-A
+          Alfabética Z-A
         </button>
       </li>
       <li>
