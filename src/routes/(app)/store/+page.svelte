@@ -1,123 +1,125 @@
 <script lang="ts">
-  import { afterNavigate } from '$app/navigation';
-  import { page } from '$app/stores';
-  import ArbitraryValueStoreItem from '$lib/components/arbitrary-value-store-item.svelte';
-  import StoreItem from '$lib/components/store-item.svelte';
-  import { getFooterSnippet } from '$lib/contexts/footer-snippet.svelte';
+  import Separator from '$lib/components/separator.svelte';
   import { onMount } from 'svelte';
   import type { PageData } from './$types';
   import { initDropdowns } from 'flowbite';
+  import StoreItem from '$lib/features/store/store-item.svelte';
+  import ArbitraryValueStoreItem from '$lib/features/store/arbitrary-value-store-item.svelte';
 
   const { data }: { data: PageData } = $props();
-  let items = $state(data.items);
 
-  let curSort = $state('—');
+  const sortOptions = [
+    {
+      text: '-',
+      value: 'none' as const,
+    },
+    {
+      text: 'Alfabética A-Z',
+      value: 'az' as const,
+    },
+    {
+      text: 'Alfabética Z-A',
+      value: 'za' as const,
+    },
+    {
+      text: 'Menor preço',
+      value: 'cheaper' as const,
+    },
+    {
+      text: 'Maior preço',
+      value: 'expensive' as const,
+    },
+  ];
 
-  getFooterSnippet().snippet = null;
+  let sort = $state<'none' | 'az' | 'za' | 'cheaper' | 'expensive'>('none');
+  const sortText = $derived(sortOptions.find((o) => o.value === sort)?.text);
+  const items = $derived.by(() => {
+    switch (sort) {
+      case 'none':
+        return data.items;
+      case 'az':
+        return data.items.toSorted((a, b) => {
+          const aName = a.name.toLocaleLowerCase();
+          const bName = b.name.toLocaleLowerCase();
+
+          if (aName < bName) {
+            return -1;
+          }
+          if (aName > bName) {
+            return 1;
+          }
+
+          return 0;
+        });
+      case 'za':
+        return data.items.toSorted((a, b) => {
+          const aName = a.name.toLocaleLowerCase();
+          const bName = b.name.toLocaleLowerCase();
+
+          if (aName < bName) {
+            return 1;
+          }
+          if (aName > bName) {
+            return -1;
+          }
+
+          return 0;
+        });
+      case 'cheaper':
+        return data.items.toSorted((a, b) => {
+          const aPrice = a.price;
+          const bPrice = b.price;
+
+          if (aPrice < bPrice) {
+            return -1;
+          }
+          if (aPrice > bPrice) {
+            return 1;
+          }
+
+          return 0;
+        });
+      case 'expensive':
+        return data.items.toSorted((a, b) => {
+          const aPrice = a.price;
+          const bPrice = b.price;
+
+          if (aPrice < bPrice) {
+            return 1;
+          }
+          if (aPrice > bPrice) {
+            return -1;
+          }
+
+          return 0;
+        });
+    }
+  });
 
   onMount(() => {
     initDropdowns();
   });
-
-  afterNavigate(() => {
-    if (!$page.url.hash) {
-      document.getElementById('root--scrollable')?.scrollTo(0, 0);
-    }
-  });
-
-  function sort(
-    direction: 'none' | 'az' | 'za' | 'cheaper' | 'expensive',
-  ): void {
-    switch (direction) {
-      case 'none':
-        items = data.items;
-        curSort = '—';
-
-        return;
-      case 'az':
-        items = items.toSorted((a, b) => {
-          const aName = a.name.toLocaleLowerCase();
-          const bName = b.name.toLocaleLowerCase();
-
-          if (aName < bName) {
-            return -1;
-          }
-          if (aName > bName) {
-            return 1;
-          }
-
-          return 0;
-        });
-        curSort = 'Alfabética A-Z';
-
-        return;
-      case 'za':
-        items = items.toSorted((a, b) => {
-          const aName = a.name.toLocaleLowerCase();
-          const bName = b.name.toLocaleLowerCase();
-
-          if (aName < bName) {
-            return 1;
-          }
-          if (aName > bName) {
-            return -1;
-          }
-
-          return 0;
-        });
-        curSort = 'Alfabética Z-A';
-
-        return;
-      case 'cheaper':
-        items = items.toSorted((a, b) => {
-          const aPrice = a.price;
-          const bPrice = b.price;
-
-          if (aPrice < bPrice) {
-            return -1;
-          }
-          if (aPrice > bPrice) {
-            return 1;
-          }
-
-          return 0;
-        });
-        curSort = 'Menor preço';
-
-        return;
-      case 'expensive':
-        items = items.toSorted((a, b) => {
-          const aPrice = a.price;
-          const bPrice = b.price;
-
-          if (aPrice < bPrice) {
-            return 1;
-          }
-          if (aPrice > bPrice) {
-            return -1;
-          }
-
-          return 0;
-        });
-        curSort = 'Maior preço';
-
-        return;
-    }
-  }
 </script>
 
-<div class="flex flex-col justify-center">
-  <div class="mx-auto flex max-w-sm flex-col gap-2 px-4 sm:max-w-xl">
-    <span class="font-serif text-xl">enxoval de casamento</span>
-    <div class="flex items-center gap-6 xs:w-1/2 xs:justify-end">
-      <span class="font-serif text-6xl sm:text-8xl"> Luiza </span>
-      <span class="font-serif-alt text-3xl sm:text-4xl"> & </span>
-    </div>
-    <span class="font-serif text-6xl xs:text-center sm:text-8xl">
+<div class="mx-auto w-full max-w-screen-sm px-4">
+  <p class="text-shadow-600 font-serif text-2xl font-bold">
+    enxoval de casamento
+  </p>
+
+  <div
+    class="text-deer-600 font-script flex flex-col items-center justify-center text-7xl sm:grid sm:grid-cols-[1fr_auto_2fr] sm:gap-x-4"
+  >
+    <span class="sm:justify-self-end">Luiza</span>
+    <span class="text-shadow-600">&</span>
+    <span
+      class="text-center sm:col-span-2 sm:col-start-2 sm:row-start-2 sm:text-left"
+    >
       João Henrique
     </span>
   </div>
 </div>
+
+<Separator />
 
 <div class="flex items-center justify-end gap-2 py-4 md:p-4">
   Ordenar por
@@ -128,7 +130,7 @@
     data-dropdown-offset-distance="8"
     class="group flex w-44 items-center gap-2 rounded-lg border border-sky-600 bg-white px-4 py-2"
   >
-    <span class="grow text-left">{curSort}</span>
+    <span class="grow text-left">{sortText}</span>
 
     <svg
       class="size-3 shrink-0 transition-colors group-hover:text-sky-600"
@@ -152,46 +154,16 @@
     class="z-10 hidden w-44 rounded-lg bg-white shadow"
   >
     <ul class="py-2 text-sm text-gray-700" aria-labelledby="sort-by--button">
-      <li>
-        <button
-          class="flex w-full justify-start px-4 py-2 hover:bg-gray-100 hover:text-sky-600"
-          onclick={() => sort('none')}
-        >
-          —
-        </button>
-      </li>
-      <li>
-        <button
-          class="flex w-full justify-start px-4 py-2 hover:bg-gray-100 hover:text-sky-600"
-          onclick={() => sort('az')}
-        >
-          Alfabética A-Z
-        </button>
-      </li>
-      <li>
-        <button
-          class="flex w-full justify-start px-4 py-2 hover:bg-gray-100 hover:text-sky-600"
-          onclick={() => sort('za')}
-        >
-          Alfabética Z-A
-        </button>
-      </li>
-      <li>
-        <button
-          class="flex w-full justify-start px-4 py-2 hover:bg-gray-100 hover:text-sky-600"
-          onclick={() => sort('cheaper')}
-        >
-          Menor preço
-        </button>
-      </li>
-      <li>
-        <button
-          class="flex w-full justify-start px-4 py-2 hover:bg-gray-100 hover:text-sky-600"
-          onclick={() => sort('expensive')}
-        >
-          Maior preço
-        </button>
-      </li>
+      {#each sortOptions as option}
+        <li>
+          <button
+            class="flex w-full justify-start px-4 py-2 hover:bg-zinc-100 hover:text-sky-600"
+            onclick={() => (sort = option.value)}
+          >
+            {option.text}
+          </button>
+        </li>
+      {/each}
     </ul>
   </div>
 </div>

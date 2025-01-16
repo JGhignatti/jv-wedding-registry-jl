@@ -1,8 +1,9 @@
 <script lang="ts">
+  import Button from '$lib/components/button.svelte';
   import { getCartItems } from '$lib/contexts/cart-items.svelte';
-  import { getFooterSnippet } from '$lib/contexts/footer-snippet.svelte';
+  import { getToasts } from '$lib/contexts/toasts.svelte';
 
-  getFooterSnippet().snippet = null;
+  const toasts = getToasts();
 
   const cartItems = getCartItems();
   const totalPrice = $derived(
@@ -13,7 +14,7 @@
   );
 
   function remove(id: number): void {
-    cartItems.remove(id);
+    cartItems.remove(id, toasts);
   }
 </script>
 
@@ -29,7 +30,7 @@
       >
         <img src={item.image} alt="" class="rounded-lg border" />
 
-        <div class="col-span-3 font-serif text-xl font-bold sm:col-span-1">
+        <div class="col-span-3 font-serif text-2xl font-bold sm:col-span-1">
           {item.name}
         </div>
 
@@ -54,27 +55,19 @@
     {/each}
   </div>
 
-  <div class="flex justify-end xs:px-4">
-    <h2 class="text-xl xs:text-2xl">
-      Valor total <span
-        class="font-serif-alt text-2xl font-bold text-secondary xs:text-3xl"
-      >
-        {totalPrice}
-      </span>
-    </h2>
-  </div>
+  {#if cartItems.list.length !== 0}
+    <div class="flex justify-end xs:px-4">
+      <h2 class="text-xl xs:text-2xl">
+        Valor total <span
+          class="font-serif-alt text-2xl font-bold text-secondary xs:text-3xl"
+        >
+          {totalPrice}
+        </span>
+      </h2>
+    </div>
 
-  <a
-    href={cartItems.list.length === 0 ? null : '/cart/checkout'}
-    class="rounded-xl bg-sky-600 px-4 py-2 text-center text-2xl text-white transition-colors hover:bg-sky-500"
-    class:disabled={cartItems.list.length === 0}
-  >
-    Checkout
-  </a>
+    <Button type="primary" href="/cart/checkout" target="_self">
+      Checkout
+    </Button>
+  {/if}
 </div>
-
-<style>
-  a.disabled {
-    @apply bg-gray-200 text-gray-400 cursor-not-allowed;
-  }
-</style>

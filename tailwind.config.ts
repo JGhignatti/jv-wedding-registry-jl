@@ -5,7 +5,6 @@ import flowbite from 'flowbite/plugin';
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
-
   theme: {
     colors: ({ colors }) => ({
       inherit: colors.inherit,
@@ -70,6 +69,5 @@ export default {
       },
     },
   },
-
   plugins: [forms, containerQueries, flowbite],
 } satisfies Config;

@@ -11,12 +11,12 @@
     <div
       role="alert"
       class="flex w-72 xs:w-80 items-start gap-2 rounded-lg border-2 bg-white p-4 text-zinc-500 shadow"
-      class:border-lime-600={toast.type === 'success'}
+      class:border-green-500={toast.type === 'success'}
       class:border-red-500={toast.type === 'error'}
     >
       {#if toast.type === 'success'}
         <svg
-          class="size-8 shrink-0 text-lime-600"
+          class="size-8 shrink-0 text-green-500"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="24"

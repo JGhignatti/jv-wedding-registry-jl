@@ -1,9 +1,11 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import CheckoutInfoForm from '$lib/components/checkout-info-form.svelte';
-  import CheckoutPix from '$lib/components/checkout-pix.svelte';
+  import CheckoutInfoForm from '$lib/features/checkout/checkout-info-form.svelte';
+  import CheckoutPix from '$lib/features/checkout/checkout-pix.svelte';
   import { getCartItems } from '$lib/contexts/cart-items.svelte';
   import { onMount } from 'svelte';
+
+  const cartItems = getCartItems();
 
   let userInfo = $state<{ name: string; email: string } | null>(null);
 
@@ -15,7 +17,7 @@
   };
 
   onMount(() => {
-    if (getCartItems().list.length === 0) {
+    if (cartItems.list.length === 0) {
       goto('/cart', { replaceState: true });
 
       return;

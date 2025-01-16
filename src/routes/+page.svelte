@@ -6,7 +6,7 @@
   import LandingSection from '$lib/features/landing/landing-section.svelte';
   import PreviewItem from '$lib/features/landing/preview-item.svelte';
   import Button from '$lib/features/landing/button.svelte';
-  import Separator from '$lib/features/landing/separator.svelte';
+  import Separator from '$lib/components/separator.svelte';
   import AddToCalendarButton from '$lib/features/landing/add-to-calendar-button.svelte';
 
   const { data }: { data: PageData } = $props();

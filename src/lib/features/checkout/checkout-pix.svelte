@@ -3,6 +3,7 @@
   import { getToasts } from '$lib/contexts/toasts.svelte';
   import { createStaticPix, hasError } from 'pix-utils';
   import { onMount } from 'svelte';
+  import FrameCorner from './frame-corner.svelte';
 
   const { userInfo }: { userInfo: { name: string; email: string } } = $props();
 
@@ -94,19 +95,39 @@
   Por favor, tente novamente ou entre em contato com Luiza Vieira pelo número +55
   51 9 9809-8134.
 {:else}
-  <p class="frame mx-auto max-w-screen-sm font-serif-alt italic drop-shadow-sm">
-    Obrigado, <strong>{userInfo.name}</strong>!<br /><br />A sua contribuição
-    para o nosso começo de vida juntos fará toda a diferença e será lembrada com
-    muito amor e gratidão. Estamos contando os dias para celebrar com você e
-    todos os nossos amigos e familiares.<br /><br />Com carinho,
-    <strong>Luiza</strong>
-    e <strong>João Henrique</strong>.
-  </p>
+  <div class="frame relative mx-auto w-full max-w-screen-sm">
+    <FrameCorner
+      type="primary"
+      classes="size-24 xs:size-28 sm:size-44 absolute top-0 right-0 rotate-180"
+    />
 
-  <div class="flex flex-col gap-2">
+    <div class="bg-shadow-100/40 relative p-6 font-serif text-2xl font-bold italic">
+      <p>
+        Obrigado, <strong>{userInfo.name}</strong>!<br /><br />A sua
+        contribuição para o nosso começo de vida juntos fará toda a diferença e
+        será lembrada com muito amor e gratidão. Estamos contando os dias para
+        celebrar com você e todos os nossos amigos e familiares.<br /><br />Com
+        carinho,
+      </p>
+
+      <div
+        class="text-deer-600 font-script flex flex-col items-center justify-center text-5xl sm:grid sm:grid-cols-[1fr_auto_2fr] sm:gap-x-4"
+      >
+        <span class="sm:justify-self-end">Luiza</span>
+        <span class="text-shadow-600">&</span>
+        <span
+          class="text-center sm:col-span-2 sm:col-start-2 sm:row-start-2 sm:text-left"
+        >
+          João Henrique
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto flex w-full max-w-screen-md flex-col gap-2">
     <h3 class="text-lg">Código copia e cola</h3>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 px-4">
       <input
         readonly
         class="grow rounded-lg border border-zinc-300 bg-zinc-100 text-zinc-400 focus:border-zinc-300 focus:outline-none focus:ring-transparent focus-visible:outline-none"
@@ -167,7 +188,7 @@
     </div>
   </div>
 
-  <div class="flex flex-col gap-2">
+  <div class="mx-auto flex w-full max-w-screen-md flex-col gap-2">
     <h3 class="text-lg">QR Code</h3>
 
     {#if qrCode !== null}
@@ -177,11 +198,11 @@
     {/if}
   </div>
 
-  <p class="italic">
+  <p class="mx-auto w-full max-w-screen-md italic">
     Use o seu celular junto do app do seu banco para enviar o presente via Pix.
   </p>
 
-  <div>
+  <div class="mx-auto w-full max-w-screen-md">
     Antes de confirmar a transferência, certifique-se de que:
 
     <ol class="list-decimal">
@@ -190,7 +211,7 @@
     </ol>
   </div>
 
-  <p class="italic">
+  <p class="mx-auto w-full max-w-screen-md italic">
     Para fazer a transfência manualmente, use a chave pix "<span
       class="font-semibold">luizabarasuol@gmail.com</span
     >" e o valor de <span class="font-semibold">{totalPrice}</span>.
@@ -199,9 +220,8 @@
 
 <style>
   .frame {
-    --corner: 2em;
-    border: var(--corner) solid;
-    border-image-source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" fill="rgb(230 236 226 / 0.4)"><path d="M4 0h1l1 1h2v2l1 1v1L8 6v2H6L5 9H4L3 8H1V6L0 5V4l1-1V1h2l1-1Z" /></svg>');
-    border-image-slice: 4 fill;
+    border: 1em solid;
+    border-image-source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="rgb(134 137 93 / 0.2)"><path d="M0 0h2v2H0zm0 3h2v2H0zm0 3h2v2H0zm6 0h2v2H6zm0-3h2v2H6zM3 6h2v2H3zm0-6h2v2H3zm3 0h2v2H6z" /></svg>');
+    border-image-slice: 3;
   }
 </style>

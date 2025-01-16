@@ -6,7 +6,7 @@
 
 <a
   href={link}
-  class="flex items-center justify-center border-b-2 border-secondary/30 text-secondary transition-colors hover:border-secondary hover:bg-amber-700/5 text-lg"
+  class="border-deer-600/30 text-deer-600 hover:border-deer-600 hover:bg-deer-100/40 flex items-center justify-center border-b-2 font-serif text-2xl font-bold transition-colors"
   class:active={$page.url.pathname.split('/')[1] === link.split('/')[1]}
 >
   {text}
@@ -14,6 +14,6 @@
 
 <style>
   a.active {
-    @apply text-primary border-primary !bg-amber-700/5;
+    @apply text-shadow-600 border-shadow-600 !bg-deer-100/40;
   }
 </style>

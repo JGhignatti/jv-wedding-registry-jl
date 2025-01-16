@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Button from '$lib/components/button.svelte';
   import { field, form } from 'svelte-forms';
   import { email as emailValidator, required } from 'svelte-forms/validators';
 
@@ -76,10 +77,6 @@
   para o seu e-mail.
 </p>
 
-<button
-  class="self-end rounded-lg bg-sky-600 px-4 py-2 text-white disabled:bg-gray-200 disabled:text-gray-400"
-  disabled={!$infoForm.valid}
-  onclick={() => onContinue()}
->
+<Button type="primary" disabled={!$infoForm.valid} onClick={() => onContinue()}>
   Continuar
-</button>
+</Button>

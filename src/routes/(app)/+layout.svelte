@@ -4,20 +4,21 @@
   import paperTexture from '$lib/images/paper.webp';
 
   const { children } = $props();
+
   const cartItems = getCartItems();
 </script>
 
 <nav class="container mx-auto mb-6 max-w-screen-xl px-4 pt-4 xs:mb-8">
   <div
     style="--bg-image: url({paperTexture})"
-    class="relative overflow-clip rounded-md bg-white shadow-xl shadow-neutral-600/10 before:absolute before:inset-0 before:block before:rounded-md before:bg-[image:var(--bg-image)] before:bg-contain before:opacity-25"
+    class="shadow-deer-400/50 relative overflow-clip rounded-lg bg-white shadow-md before:absolute before:inset-0 before:block before:rounded-md before:bg-[image:var(--bg-image)] before:bg-contain before:opacity-25"
   >
     <div class="relative flex flex-col gap-2 p-4 sm:flex-row sm:gap-4 sm:p-6">
       <div
-        class="flex justify-center gap-[5px] font-serif text-4xl leading-10 text-secondary"
+        class="text-deer-600 flex items-center justify-center gap-2 font-serif text-4xl"
       >
         <span>L</span>
-        <div class="w-[2px] bg-secondary"></div>
+        <div class="bg-shadow-600 h-12 w-[1.5px]"></div>
         <span>JH</span>
       </div>
 
@@ -36,7 +37,7 @@
 
           {#if cartItems.list.length !== 0}
             <div
-              class="absolute flex size-6 items-center justify-center rounded-full bg-red-600 text-white -top-1 -right-1"
+              class="absolute -right-1 -top-1 flex size-6 items-center justify-center rounded-full bg-red-500 text-white"
             >
               {cartItems.list.length}
             </div>
