@@ -1,65 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Poiret+One&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 @layer base {
-  @font-face {
-    font-family: 'The Seasons';
-    font-weight: lighter;
-    font-style: normal;
-    src:
-      local(''),
-      url('$lib/fonts/the-seasons/the-seasons-lt.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'The Seasons';
-    font-weight: normal;
-    font-style: normal;
-    src:
-      local(''),
-      url('$lib/fonts/the-seasons/the-seasons-reg.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'The Seasons';
-    font-weight: bold;
-    font-style: normal;
-    src:
-      local(''),
-      url('$lib/fonts/the-seasons/the-seasons-bd.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'The Seasons';
-    font-weight: lighter;
-    font-style: italic;
-    src:
-      local(''),
-      url('$lib/fonts/the-seasons/the-seasons-ltit.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'The Seasons';
-    font-weight: normal;
-    font-style: italic;
-    src:
-      local(''),
-      url('$lib/fonts/the-seasons/the-seasons-it.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'The Seasons';
-    font-weight: bold;
-    font-style: italic;
-    src:
-      local(''),
-      url('$lib/fonts/the-seasons/the-seasons-bdit.ttf') format('truetype');
-  }
-
-  input::-webkit-outer-spin-button,
+  /* input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -81,5 +27,5 @@
     &::-webkit-scrollbar-thumb {
       @apply rounded-full bg-white;
     }
-  }
+  } */
 }
