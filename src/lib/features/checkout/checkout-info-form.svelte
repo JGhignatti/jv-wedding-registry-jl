@@ -73,8 +73,7 @@
 
 <p class="text-sm italic">
   Seu nome e e-mail não são armazenados, são apenas usados para notificar os
-  noivos do seu presente; uma cópia dos códigos que serão gerados serão enviados
-  para o seu e-mail.
+  noivos do seu presente.
 </p>
 
 <Button type="primary" disabled={!$infoForm.valid} onClick={() => onContinue()}>

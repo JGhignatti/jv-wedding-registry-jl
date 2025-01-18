@@ -5,6 +5,8 @@
   import { initDropdowns } from 'flowbite';
   import StoreItem from '$lib/features/store/store-item.svelte';
   import ArbitraryValueStoreItem from '$lib/features/store/arbitrary-value-store-item.svelte';
+  import { afterNavigate } from '$app/navigation';
+  import { page } from '$app/stores';
 
   const { data }: { data: PageData } = $props();
 
@@ -99,15 +101,21 @@
   onMount(() => {
     initDropdowns();
   });
+
+  afterNavigate(() => {
+    if (!$page.url.hash) {
+      document.getElementById('root--scrollable')?.scrollTo(0, 0);
+    }
+  });
 </script>
 
 <div class="mx-auto w-full max-w-screen-sm px-4">
-  <p class="text-shadow-600 font-serif text-2xl font-bold">
+  <p class="font-serif text-2xl font-bold text-shadow-600">
     enxoval de casamento
   </p>
 
   <div
-    class="text-deer-600 font-script flex flex-col items-center justify-center text-7xl sm:grid sm:grid-cols-[1fr_auto_2fr] sm:gap-x-4"
+    class="flex flex-col items-center justify-center font-script text-7xl text-deer-600 sm:grid sm:grid-cols-[1fr_auto_2fr] sm:gap-x-4"
   >
     <span class="sm:justify-self-end">Luiza</span>
     <span class="text-shadow-600">&</span>

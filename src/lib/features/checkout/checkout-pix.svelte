@@ -32,6 +32,8 @@
       code = pix.toBRCode();
       qrCode = pix.toImage();
 
+      sendMail();
+
       setTimeout(() => {
         cartItems.list = [];
       }, 500);
@@ -39,6 +41,30 @@
       errorCreatingPix = true;
     }
   });
+
+  async function sendMail(): Promise<void> {
+    try {
+      const response = await fetch('/api/mail/checkout', {
+        method: 'POST',
+        body: JSON.stringify({
+          userInfo,
+          items: cartItems.list.map((item) => item.name),
+          totalPrice,
+        }),
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+
+      const body = await response.json();
+
+      if (body.status === 'failed') {
+        toasts.error('Não foi possível lhe enviar o e-mail de confirmação.');
+      }
+    } catch {
+      toasts.error('Não foi possível lhe enviar o e-mail de confirmação.');
+    }
+  }
 
   function copyCode(): void {
     if (!code) {
@@ -101,7 +127,9 @@
       classes="size-24 xs:size-28 sm:size-44 absolute top-0 right-0 rotate-180"
     />
 
-    <div class="bg-shadow-100/40 relative p-6 font-serif text-2xl font-bold italic">
+    <div
+      class="relative bg-shadow-100/40 p-6 font-serif text-2xl font-bold italic"
+    >
       <p>
         Obrigado, <strong>{userInfo.name}</strong>!<br /><br />A sua
         contribuição para o nosso começo de vida juntos fará toda a diferença e
@@ -111,7 +139,7 @@
       </p>
 
       <div
-        class="text-deer-600 font-script flex flex-col items-center justify-center text-5xl sm:grid sm:grid-cols-[1fr_auto_2fr] sm:gap-x-4"
+        class="flex flex-col items-center justify-center font-script text-5xl text-deer-600 sm:grid sm:grid-cols-[1fr_auto_2fr] sm:gap-x-4"
       >
         <span class="sm:justify-self-end">Luiza</span>
         <span class="text-shadow-600">&</span>
