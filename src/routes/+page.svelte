@@ -113,7 +113,7 @@
 
   <div class="flex justify-center">
     <Button
-      href="https://wa.me/5551996787876?text=Ol%C3%A1,%20Adriana,%20gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20no%20casamento%20da%20Luiza%20e%20do%20Jo%C3%A3o%20Henrique,%20dia%2012%20de%20Abril%20de%202025,%20no%20Jardim%20Babylonia.%0AMeu%20nome%20completo%20%C3%A9%20___%20e%20meu(s)%20acompanhante(s)%20s%C3%A3o%20___."
+      href="https://wa.me/5551996787876?text=Ol%C3%A1,%20Adriana,%20gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20no%20casamento%20da%20Luiza%20e%20do%20Jo%C3%A3o%20Henrique,%20dia%2012%20de%20Abril%20de%202025,%20no%20Jardim%20Babylonia.%0AMeu%20nome%20completo%20%C3%A9%20___."
       target="_blank"
     >
       <svg
@@ -155,7 +155,7 @@
 <LandingSection title="Informações" id="info">
   <p class="text-center">
     <span class="text-deer-600 text-4xl">12 de Abril de 2025</span><br />
-    <span class="text-shadow-600 text-3xl">Sábado, às 16h30</span>
+    <span class="text-shadow-600 text-3xl">Sábado, às 16h30min</span>
   </p>
 
   <div class="flex justify-center">
