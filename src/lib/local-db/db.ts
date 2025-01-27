@@ -260,7 +260,7 @@ export const items: Item[] = [
   },
   {
     id: 29,
-    name: 'Permissão para anunciar gravidez durante a festa',
+    name: 'Permissão para anunciar sua gravidez durante a festa',
     price: 4500,
     priceText: 'R$ 4500,00',
     image: image29,
